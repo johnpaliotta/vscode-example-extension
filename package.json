@@ -1,8 +1,12 @@
 {
   "name": "vscode-extension-example",
   "displayName": "vscode-extension-example",
-  "description": "",
+  "description": "A Bobally extension example",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johnpaliotta/vscode-example-extension"
+  },
   "engines": {
     "vscode": "^1.97.0"
   },
@@ -46,5 +50,8 @@
     "eslint": "^9.19.0",
     "npm-run-all": "^4.1.5",
     "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "vsce": "^2.15.0"
   }
 }
