@@ -1,7 +1,7 @@
 {
   "name": "vscode-extension-example",
   "displayName": "vscode-extension-example",
-  "description": "A Bobally extension example",
+  "description": "A VS Code extension example",
   "version": "0.0.1",
   "repository": {
     "type": "git",
@@ -26,7 +26,7 @@
   "scripts": {
     "vscode:prepublish": "npm run esbuild-base -- --minify && npm run esbuild-server -- --minify",
     "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --main-fields=module,main",
-    "esbuild-server": "esbuild ./src/langserver/langserver.ts --bundle --outfile=out/server.js --external:vscode --format=cjs --platform=node",
+    "esbuild-server": "esbuild ./src/langserver/langServer.ts --bundle --outfile=out/server.js --external:vscode --format=cjs --platform=node",
     "esbuild-watch": "npm-run-all --parallel esbuild-base esbuild-server -- --sourcemap --watch",
     "esbuild": "npm run esbuild-base -- --sourcemap && npm run esbuild-server -- --sourcemap",
     "package": "tsc --project tsconfig.json && vsce package",
