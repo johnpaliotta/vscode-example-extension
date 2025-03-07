@@ -1,6 +1,9 @@
 
 
 int foo (int param) {
-    return param;
+    int local = param;
+    local += 1;
+    return local;
 }
 
+// hello 

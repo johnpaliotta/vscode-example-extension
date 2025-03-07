@@ -92,6 +92,21 @@ connection.onCompletion(
     }
 );
 
+// This function gets called when the user hovers over an editor item
+// TBD: this is a nonsense example that always retuns the same thing
+connection.onHover(
+    async (completionData: CompletionParams): Promise<Hover | undefined> => {
+        if (completionData.textDocument.uri.endsWith(".cpp")) {
+            const hoverString = "Bobally hover string for a .cpp file";
+            const hover: Hover = { contents: hoverString };
+            return hover;
+        } else {
+            return undefined;
+        }
+    }
+);
+
+
 
 // Make the text document manager listen on the connection
 // for open, change and close text document events

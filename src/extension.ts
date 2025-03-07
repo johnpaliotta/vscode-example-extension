@@ -2,6 +2,8 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
+import { initializeGutterDecorator, updateGutterDecorations } from "./decorator";
+
 import { displayMessage, errorLevel } from "./common/messagePane";
 import { activateLanguageServerClient } from "./langserver/client";
 
@@ -29,13 +31,32 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 	context.subscriptions.push(cmd2);
 
-
 	displayMessage("Hello from the extension", errorLevel.info);
 
 	// TBD: remove if you don't need a language server
 	activateLanguageServerClient(context);
 
+	// TBD: remove if you don't need a gutter decorator
+	initializeGutterDecorator(context);
+	updateGutterDecorations();
+
+	vscode.window.onDidChangeActiveTextEditor(
+		// this function gets called when the user changes the
+		// active editor, including when closing an editor
+		// in which case the "editor" parameter will be undefined
+		(editor) => {
+			if (editor) {
+				// TBD: remove if you don't need a gutter decorator
+				updateGutterDecorations();
+			}
+		},
+		null,
+		context.subscriptions
+	);
+
 }
+
+
 
 // This method is called when your extension is deactivated
 export function deactivate() { }

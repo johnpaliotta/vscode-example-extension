@@ -37,6 +37,12 @@
           "command": "vscode-extension-example.example-command-2",
           "when": "never"
         }
+      ],
+      "editor/lineNumber/context": [
+        {
+         "command": "vscode-extension-example.example-command-2",
+         "when": "editorLineNumber in vscode-extension-example.clickableLineList"
+        }
       ]
     }
   },
