@@ -3,6 +3,7 @@ import * as url from "url";
 
 import {
     CompletionItem,
+    CompletionItemKind,
     CompletionParams,
     createConnection,
     DidChangeConfigurationNotification,
@@ -71,7 +72,7 @@ async function performCompletionProcessing(
                 "cindi",
                 "kids",
             ];
-            returnList = buildCompletionList(completionList, 1);
+            returnList = buildCompletionList(completionList, CompletionItemKind.Text);
         }
     }
     return returnList;
@@ -92,12 +93,19 @@ connection.onCompletion(
     }
 );
 
+// This handler gets called AFTER the user selects something from the current completion list
+// It seems that this gets called even when the user does up and down arrow not just a selection
+// maybe this is for us to provide "extra" info for that choice?
+connection.onCompletionResolve((item: CompletionItem): CompletionItem => {
+    return item;
+});
+
 // This function gets called when the user hovers over an editor item
 // TBD: this is a nonsense example that always retuns the same thing
 connection.onHover(
     async (completionData: CompletionParams): Promise<Hover | undefined> => {
         if (completionData.textDocument.uri.endsWith(".cpp")) {
-            const hoverString = "Bobally hover string for a .cpp file";
+            const hoverString = "Bobally This is a hover string for a .cpp file";
             const hover: Hover = { contents: hoverString };
             return hover;
         } else {
