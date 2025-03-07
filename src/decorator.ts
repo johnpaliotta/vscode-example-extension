@@ -9,7 +9,7 @@ let gutterDecorations: vscode.DecorationOptions[] = [];
 let clickableLineList: number[] = [];
 
 
-export function initializeGutterDecorator(context: vscode.ExtensionContext) {
+export function initializeGutterDecorations(context: vscode.ExtensionContext) {
     // TBD: replace with whatever icon you want to use, beaker is just a sample svg 
     // to show how to use light and dark versions of icons
     gutterOptions = {

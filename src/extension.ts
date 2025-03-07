@@ -2,7 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
-import { applyGutterDecorations, initializeGutterDecorator } from "./decorator";
+import { applyGutterDecorations, initializeGutterDecorations } from "./decorator";
 
 import { displayMessage, errorLevel } from "./common/messagePane";
 import { activateLanguageServerClient } from "./langserver/client";
@@ -37,7 +37,7 @@ export function activate(context: vscode.ExtensionContext) {
 	activateLanguageServerClient(context);
 
 	// TBD: remove if you don't need a gutter decorator
-	initializeGutterDecorator(context);
+	initializeGutterDecorations(context);
 
 	// TBD: remove if you don't need a gutter decorator, or add "real" line numbers
 	const gutterDecorationList = [5,6];
