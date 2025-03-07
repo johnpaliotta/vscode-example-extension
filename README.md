@@ -47,5 +47,5 @@ Chjeck that the following user actions are available
  - CTRL-SHIFT-P -> Example Command 1 -> should result in an info popup message 
  - Typing: "// hello " on a new line -> should show Auto-complete list with [cindi, john, kids]
  - View -> Output                    -> vscode-extension-example and -server should be in pull-down
- - Right click on flask icons        -> example-command-2 should be shown
+ - Right click on flask icons        -> example-command-2 should be shown in command list
  - example-command-2                 -> should result in an info popup message 
