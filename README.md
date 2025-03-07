@@ -22,7 +22,8 @@ There are place holders for the following things
 
 The package.json defines the following commands
 
-- .
+- example-command-1 -> shown in the command pallette menu -> pops up a message dialog
+- example-command-2 -> 
 
 The extension.ts file has calls the following files.functions
 

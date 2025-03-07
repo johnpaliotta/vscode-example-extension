@@ -20,10 +20,25 @@
   "contributes": {
     "commands": [
       {
-        "command": "vscode-extension-example.helloWorld",
-        "title": "Hello World"
+        "command": "vscode-extension-example.example-command-1",
+        "title": "Example Command 1"
+      },
+      {
+        "command": "vscode-extension-example.example-command-2",
+        "title": "Example Command 2"
       }
-    ]
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "vscode-extension-example.example-command-1" 
+        },
+        {
+          "command": "vscode-extension-example.example-command-2",
+          "when": "never"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run esbuild-base -- --minify && npm run esbuild-server -- --minify",
