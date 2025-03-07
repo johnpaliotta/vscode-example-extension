@@ -13,9 +13,11 @@ import { displayMessage } from "../common/messagePane";
 
 let client: LanguageClient;
 
+
+// This function should be called from the activate function in extension.ts
+// to start the language server client and server
 export function activateLanguageServerClient(context: ExtensionContext) {
 
-    // The server is implemented in nodejs also
     let serverModule = context.asAbsolutePath(path.join("out", "server.js"));
 
     // The debug options for the server
@@ -26,6 +28,8 @@ export function activateLanguageServerClient(context: ExtensionContext) {
     // Otherwise the run options are used
 
     // TBD: replace "dummy-argument" with any actual argument needed by the server
+    // Note that you can send additional data to the server after startup using
+    // the client.sendNotification() or client.sendRequest() methods
 
     let serverOptions: ServerOptions = {
         run: {
@@ -49,7 +53,7 @@ export function activateLanguageServerClient(context: ExtensionContext) {
 
     // Options to control the language client
     // TBD: add additional file extensions as needed
-    // You can register multiple fiole extensions and then do the 
+    // You can register multiple file extensions and then do the 
     // right thing in the callback depending on the extension of the file
     let clientOptions: LanguageClientOptions = {
         documentSelector: [

@@ -26,5 +26,5 @@ The package.json defines the following commands
 
 The extension.ts file has calls the following files.functions
 
- - messagePane.displayMessage - which displays a message in a custom "vscode-estension-example" output pane
- - .
+ - messagePane.displayMessage()          - which displays a message in a custom "vscode-estension-example" output pane
+ - client.activateLanguageServerClient() - which starts the lang server and handles auto completions
