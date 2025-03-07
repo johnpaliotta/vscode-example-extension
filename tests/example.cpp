@@ -6,4 +6,3 @@ int foo (int param) {
     return local;
 }
 
-// hello 

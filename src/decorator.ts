@@ -25,7 +25,7 @@ export function initializeGutterDecorator(context: vscode.ExtensionContext) {
     );
 }
 
-export function updateGutterDecorations() {
+export function applyGutterDecorations(lineList: number[]) {
 
     let activeEditor = vscode.window.activeTextEditor;
     if (activeEditor) {
@@ -36,14 +36,10 @@ export function updateGutterDecorations() {
 
         if (filePath.endsWith(".cpp")) {
 
-            // TBD: this is hard-coded to put an icon on lines 4 and 6
-            // note that the decoration is 0-based, so line 4 is actually index 3
-            gutterDecorations.push(getRangeOption(3));
-            gutterDecorations.push(getRangeOption(5));
-            // TBD: this variable is used to enable and disable the right-click menu
-            // for a particular line.  Look for clickableLineList in package.json
-            clickableLineList.push(4);
-            clickableLineList.push(6);
+            for (let i = 0; i < lineList.length; i++) {
+                gutterDecorations.push(getRangeOption(lineList[i]-1));
+                clickableLineList.push(lineList[i]);
+            }
 
             // update the gutter icon decorations
             activeEditor.setDecorations(
