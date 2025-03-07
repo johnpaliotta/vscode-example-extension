@@ -3,6 +3,7 @@
 import * as vscode from 'vscode';
 
 import { displayMessage, errorLevel, indentString } from "./common/messagePane";
+import { activateLanguageServerClient } from "./langserver/client";
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -23,6 +24,9 @@ export function activate(context: vscode.ExtensionContext) {
 
 
 	displayMessage("Hello from the extension", errorLevel.info);
+
+	// TBD: remove if you don't need a language server
+	activateLanguageServerClient(context);
 
 	context.subscriptions.push(disposable);
 }

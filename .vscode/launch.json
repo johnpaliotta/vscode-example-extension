@@ -6,14 +6,16 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "Run Extension",
+			"name": "Extension Example",
 			"type": "extensionHost",
 			"request": "launch",
+			"runtimeExecutable": "${execPath}",
+			"autoAttachChildProcesses": true,
+			"outFiles": [
+				"${workspaceFolder}/out/*.js"
+			],
 			"args": [
 				"--extensionDevelopmentPath=${workspaceFolder}"
-			],
-			"outFiles": [
-				"${workspaceFolder}/out/**/*.js"
 			],
 			"preLaunchTask": {
 				"type": "npm",
