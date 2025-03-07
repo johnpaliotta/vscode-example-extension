@@ -29,6 +29,12 @@ The extension.ts file has calls the following files.functions
 
  - messagePane.displayMessage()          - which displays a message in a custom "vscode-estension-example" output pane
  - client.activateLanguageServerClient() - which starts the lang server and handles auto completions
+ - decorator.updateGutterDecorations()   - which initializes the gutter decorations if a file is open
+ 
+The extension.ts file registers the following handlers
+
+- onDidChangeActiveTextEditor
+
 
 ## User Facing Features
 
