@@ -1,6 +1,4 @@
-===============================================================================
 The following license applies to all files in this repository,
-===============================================================================
 
 Copyright (c) 2025 Bobally Software LLC (Bobally)
 
