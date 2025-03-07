@@ -4,7 +4,7 @@ This is an example extension that has examples of all of the pieces
 that Bobally extensions might use.  In GitHub this repo is marked
 as a template.
 
-## Usage
+## Using as a Template for a New Application
 
 To use this template to create a new repository: 
 
