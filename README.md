@@ -8,8 +8,8 @@ as a template.
 
 To use this template to create a new repository: 
 
-- Navigate to [the repo](https://github.com/johnpaliotta/vscode-example-extension)
-and click the button: "Use this Template" in the upper right of the page, 
+- Navigate to [the repo](https://github.com/johnpaliotta/vscode-example-extension),
+click the button: "Use this Template" in the upper right of the page, 
 and choose "Create a new Repository" from the drop down.
 
 - Clone the new repository and replace all instances of: "vscode-extension-example"
