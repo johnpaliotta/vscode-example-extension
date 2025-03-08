@@ -30,12 +30,11 @@ export function initializeDecorationTypes(context: vscode.ExtensionContext) {
     );
 
     // replace with whatever highlight color you want to use, the sample uses yellow with black
-    // TBD: for some reason the decoration is not working unless i use isWholeLine: true
     let highlightOptions: DecorationRenderOptions;
+    // Add "isWholeLine": true," if you wnat the highlight to cover the full width of the editor
     highlightOptions = {
         "color": "#1f1f1f",
         "backgroundColor": "#ffcc00",
-        "isWholeLine": true,
     };
     highlightDecorationType = vscode.window.createTextEditorDecorationType(highlightOptions);
 
@@ -81,7 +80,8 @@ export function applyHighlightDecorations(lineList: number[]) {
         highlightDecorationList = [];
 
         for (let i = 0; i < lineList.length; i++) {
-            highlightDecorationList.push(getRangeOption(lineList[i] - 1, 100));
+            // TBD: we could perfectly find the end column but this works fine
+            highlightDecorationList.push(getRangeOption(lineList[i] - 1, 200));
         }
 
         // update the highlight decorations
