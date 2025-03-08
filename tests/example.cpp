@@ -3,7 +3,7 @@
 int foo (int param) {
     int local = param;
     
-    // probe loction
+    // probe location
     local += 1;
 
     // probe location
