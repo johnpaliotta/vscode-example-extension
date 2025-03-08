@@ -73,7 +73,7 @@ export function applyGutterDecorations(lineList: number[]) {
 }
 
 export function applyHighlightDecorations(lineList: number[]) {
-    
+
     let activeEditor = vscode.window.activeTextEditor;
     if (activeEditor) {
         // toss the old data
