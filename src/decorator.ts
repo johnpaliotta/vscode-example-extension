@@ -3,15 +3,20 @@ import { DecorationRenderOptions, TextEditorDecorationType } from "vscode";
 
 import { getRangeOption } from "./utilities";
 
-let gutterOptions: DecorationRenderOptions;
 let gutterDecorationType: TextEditorDecorationType;
-let gutterDecorations: vscode.DecorationOptions[] = [];
+let gutterDecorationList: vscode.DecorationOptions[] = [];
+
+let highlightDecorationType: TextEditorDecorationType;
+let highlightDecorationList: vscode.DecorationOptions[] = [];
+
 let clickableLineList: number[] = [];
 
 
-export function initializeGutterDecorations(context: vscode.ExtensionContext) {
+export function initializeDecorationTypes(context: vscode.ExtensionContext) {
+
     // TBD: replace with whatever icon you want to use, beaker is just a sample svg 
     // to show how to use light and dark versions of icons
+    let gutterOptions: DecorationRenderOptions;
     gutterOptions = {
         light: {
             gutterIconPath: context.asAbsolutePath("./images/light/beaker.svg"),
@@ -23,6 +28,17 @@ export function initializeGutterDecorations(context: vscode.ExtensionContext) {
     gutterDecorationType = vscode.window.createTextEditorDecorationType(
         gutterOptions
     );
+
+    // replace with whatever highlight color you want to use, the sample uses yellow with black
+    // TBD: for some reason the decoration is not working unless i use isWholeLine: true
+    let highlightOptions: DecorationRenderOptions;
+    highlightOptions = {
+        "color": "#1f1f1f",
+        "backgroundColor": "#ffcc00",
+        "isWholeLine": true,
+    };
+    highlightDecorationType = vscode.window.createTextEditorDecorationType(highlightOptions);
+
 }
 
 export function applyGutterDecorations(lineList: number[]) {
@@ -30,21 +46,21 @@ export function applyGutterDecorations(lineList: number[]) {
     let activeEditor = vscode.window.activeTextEditor;
     if (activeEditor) {
         // toss the old data
-        gutterDecorations = [];
+        gutterDecorationList = [];
         clickableLineList = [];
         const filePath = activeEditor.document.fileName;
 
         if (filePath.endsWith(".cpp")) {
 
             for (let i = 0; i < lineList.length; i++) {
-                gutterDecorations.push(getRangeOption(lineList[i]-1));
+                gutterDecorationList.push(getRangeOption(lineList[i] - 1));
                 clickableLineList.push(lineList[i]);
             }
 
             // update the gutter icon decorations
             activeEditor.setDecorations(
                 gutterDecorationType,
-                gutterDecorations
+                gutterDecorationList
             );
 
             // push the updated clickableLineList to control content (right click) menu choices
@@ -56,3 +72,23 @@ export function applyGutterDecorations(lineList: number[]) {
         }
     }
 }
+
+export function applyHighlightDecorations(lineList: number[]) {
+    
+    let activeEditor = vscode.window.activeTextEditor;
+    if (activeEditor) {
+        // toss the old data
+        highlightDecorationList = [];
+
+        for (let i = 0; i < lineList.length; i++) {
+            highlightDecorationList.push(getRangeOption(lineList[i] - 1, 100));
+        }
+
+        // update the highlight decorations
+        activeEditor.setDecorations(
+            highlightDecorationType,
+            highlightDecorationList
+        );
+    }
+}
+

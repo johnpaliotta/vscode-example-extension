@@ -27,9 +27,11 @@ The package.json defines the following commands
 
 The extension.ts file has calls the following files.functions
 
- - messagePane.displayMessage()          - which displays a message in a custom "vscode-estension-example" output pane
- - client.activateLanguageServerClient() - which starts the lang server and handles auto completions
- - decorator.updateGutterDecorations()   - which initializes the gutter decorations if a file is open
+ - messagePane.displayMessage()           - which displays a message in a custom "vscode-estension-example" output pane
+ - client.activateLanguageServerClient()  - which starts the lang server and handles auto completions
+ - decorator.updateGutterDecorations()    - which initializes the gutter decorations if a file is open
+ - decorator.updateHighlightDecorations() - which initializes the highlight decorations if a file is open
+
  
 The extension.ts file registers the following handlers
 
@@ -40,9 +42,10 @@ The extension.ts file registers the following handlers
 
 Run the extension and open the ./tests directory and open file example.cpp, notice
 
-- A Flask Icon should be displayed in the gutter on lines 4 and 6
+- A Flask Icon should be displayed in the gutter on lines 6 and 9
+- Line 6 should be highlighted in yellow
 
-Chjeck that the following user actions are available 
+Check that the following user actions are available 
 
  - CTRL-SHIFT-P -> Example Command 1 -> should result in an info popup message 
  - Typing: "// hello " on a new line -> should show Auto-complete list with [cindi, john, kids]

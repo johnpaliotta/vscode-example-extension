@@ -2,7 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
-import { applyGutterDecorations, initializeGutterDecorations } from "./decorator";
+import { applyGutterDecorations, applyHighlightDecorations, initializeDecorationTypes } from "./decorator";
 
 import { displayMessage, errorLevel } from "./common/messagePane";
 import { activateLanguageServerClient } from "./langserver/client";
@@ -36,13 +36,18 @@ export function activate(context: vscode.ExtensionContext) {
 	// TBD: remove if you don't need a language server
 	activateLanguageServerClient(context);
 
-	// TBD: remove if you don't need a gutter decorator
-	initializeGutterDecorations(context);
+	// TBD: remove if you are not using decorations
+	// Initialize all decoration types
+	initializeDecorationTypes(context);
 
-	// TBD: remove if you don't need a gutter decorator, or add "real" line numbers
-	const gutterDecorationList = [5,6];
+	// TBD: example of adding gutter decorations
+	const gutterDecorationList = [6, 9];
 	applyGutterDecorations(gutterDecorationList);
 
+	// TBD: example of adding highlight decorations	
+	applyHighlightDecorations([6]);
+
+	// This gets called when the user changes tabs
 	vscode.window.onDidChangeActiveTextEditor(
 		// this function gets called when the user changes the
 		// active editor, including when closing an editor
@@ -50,10 +55,36 @@ export function activate(context: vscode.ExtensionContext) {
 		(editor) => {
 			if (editor) {
 				// TBD: remove if you don't need a gutter decorator, or add "real" line numbers
-				// I intentionally change the line numbers to show that the gutter updates
-				// on a re-open of the file
-				const gutterDecorationList = [4,6];
+				const gutterDecorationList = [6, 9];
 				applyGutterDecorations(gutterDecorationList);
+				applyHighlightDecorations([6]);
+			}
+		},
+		null,
+		context.subscriptions
+	);
+
+
+	// This gets called when the user edits a file - even if not saved
+	vscode.workspace.onDidChangeTextDocument(
+		async (editor) => {
+			if (editor) {
+				// TBD: remove if you don't need a gutter decorator, or add "real" line numbers
+				const gutterDecorationList = [6, 9];
+				applyGutterDecorations(gutterDecorationList);
+				applyHighlightDecorations([6]);
+			}
+		},
+		null,
+		context.subscriptions
+	);
+
+
+	// This gets called when the user saves | auto-saves a file
+	vscode.workspace.onDidSaveTextDocument(
+		async (editor) => {
+			if (editor) {
+				;
 			}
 		},
 		null,
